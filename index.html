@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Javascript i18n Demo</title>
+</head>
+<body>
+<p id="t1">Passowrd length must be more than %len%</p>
+<p id="t2">I have %num% apple</p>
+<p id="t3">You are awesome</p>
+<script type="text/javascript" src="js/require.js"></script>
+<script type="text/javascript">
+//Load Language Data
+
+//zh_CN|en_US
+var language = 'zh_CN';
+
+requirejs(['js/di18n.js','js/'+language+'.js'],function(i18n,langsData){
+	i18n.setData(langsData);
+	//Translate
+	var t1Html = i18n.tr(document.getElementById('t1').innerHTML,{len:5});
+	document.getElementById('t1').innerHTML = t1Html;
+
+	var t2Html = i18n.tr(document.getElementById('t2').innerHTML,{num:5});
+	document.getElementById('t2').innerHTML = t2Html;
+
+	var t3Html = i18n.tr(document.getElementById('t3').innerHTML);
+	document.getElementById('t3').innerHTML = t3Html;
+})
+
+</script>
+</body>
+</html>
